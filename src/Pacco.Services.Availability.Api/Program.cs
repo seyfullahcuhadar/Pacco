@@ -1,6 +1,8 @@
 ﻿using System.Threading.Tasks;
+using Convey;
 using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
+using Pacco.Services.Availability.Application;
 
 namespace Pacco.Services.Availability.Api
 {
@@ -13,6 +15,13 @@ namespace Pacco.Services.Availability.Api
 
         public static IWebHostBuilder CreateWebHostBuilder(string[] args)
             => WebHost.CreateDefaultBuilder(args)
-                .UseStartup<Startup>();
+                .ConfigureServices(services =>
+                    services.AddConvey()
+                        .AddApplication()
+                        .Build())
+                .Configure(app =>
+                {
+
+                });
     }
 }
